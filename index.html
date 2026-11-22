@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="The key lessons from 8 business books every founder should read, told as 4-panel comics.">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>The Founder's Comic Shelf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Pangolin&family=Rubik:wght@400;500;700&display=swap">
+<style>
+/* Layout: comic-book shelf. Bold ink hero burst, then one 4-panel strip per book; panels stay printed paper in both themes. */
+:root {
+  --bg: #ffffff;
+  --fg: #16141a;
+  --muted: #5b5764;
+  --line: #16141a;
+  --chip: #f1eff5;
+  --accent: #ffd23f;   /* comic yellow */
+  --pop: #ef3e5c;      /* comic red */
+  --sky: #2ec4f1;      /* comic cyan */
+  /* panel world: printed paper, same in both themes */
+  --ink: #16141a;
+  --paper: #fffdf8;
+  --p1: #fff3c4; --p2: #d9f4fd; --p3: #ffe0e6; --p4: #fffdf8;
+  --skin: #ffd9b8;
+  --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-hand: "Pangolin", "Comic Sans MS", "Segoe Print", cursive;
+  --f-body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15131b; --fg: #f4f2f8; --muted: #a9a4b5; --line: #f4f2f8; --chip: #262331;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15131b; --fg: #f4f2f8; --muted: #a9a4b5; --line: #f4f2f8; --chip: #262331;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* HERO */
+.hero { background: var(--accent); color: var(--ink); border-bottom: 4px solid var(--ink);
+  background-image: radial-gradient(rgba(22,20,26,.14) 1.4px, transparent 1.6px); background-size: 10px 10px;
+  margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: calc(env(safe-area-inset-top, 0px) + 0px); }
+.hero .wrap { padding-block: 56px 64px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.kicker { display: inline-block; font-family: var(--f-display); font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+  background: var(--ink); color: var(--accent); padding: 6px 12px; transform: rotate(-2deg); }
+h1 { font-family: var(--f-display); font-weight: 900; font-size: clamp(34px, 6vw, 64px); line-height: 1.02; margin: 18px 0 18px; text-wrap: balance; letter-spacing: -.01em; }
+h1 em { font-style: normal; color: var(--paper); -webkit-text-stroke: 2px var(--ink); paint-order: stroke fill; text-shadow: 4px 4px 0 var(--ink); }
+.lede { font-size: 18px; max-width: 34em; margin: 0 0 26px; }
+.cta { display: inline-flex; align-items: center; gap: 10px; font-family: var(--f-display); font-weight: 600; font-size: 15px; text-decoration: none;
+  color: var(--ink); background: var(--paper); border: 3px solid var(--ink); padding: 14px 22px; box-shadow: 5px 5px 0 var(--ink); transition: transform .12s, box-shadow .12s; cursor: pointer; }
+.cta:hover { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--ink); }
+.cta:focus-visible, .chip:focus-visible, .done:focus-visible, input:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+.stats { display: flex; gap: 22px; flex-wrap: wrap; margin-top: 30px; font-family: var(--f-hand); font-size: 18px; }
+.stats b { font-family: var(--f-display); font-size: 26px; display: block; line-height: 1; }
+.burst { position: relative; justify-self: center; width: min(100%, 360px); }
+.burst svg { width: 100%; height: auto; display: block; }
+
+/* TOOLBAR */
+.toolbar { padding-block: 36px 8px; display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: center; justify-content: space-between; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--f-body); font-weight: 500; font-size: 14px; border: 2px solid var(--line); background: var(--bg); color: var(--fg); padding: 7px 14px; border-radius: 999px; cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+.progress { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--muted); min-width: 0; }
+.bar { width: 160px; height: 12px; border: 2px solid var(--line); border-radius: 999px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--pop); transition: width .3s; }
+
+/* BOOKS */
+.books { display: grid; gap: 64px; padding-block: 28px 72px; }
+.book-head { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: end; justify-content: space-between; margin-bottom: 18px; }
+.book-head > div { min-width: 0; }
+.book h2 { font-family: var(--f-display); font-weight: 900; font-size: clamp(22px, 3.2vw, 32px); line-height: 1.1; margin: 0 0 6px; text-wrap: balance; }
+.meta { color: var(--muted); font-size: 15px; }
+.meta .tag { display: inline-block; background: var(--chip); color: var(--fg); padding: 1px 9px; border-radius: 999px; font-size: 13px; margin-left: 6px; }
+.done { font: 500 14px var(--f-body); border: 2px solid var(--line); background: var(--bg); color: var(--fg); padding: 8px 14px; border-radius: 8px; cursor: pointer; white-space: nowrap; }
+.done[aria-pressed="true"] { background: var(--pop); border-color: var(--pop); color: #fff; }
+.strip { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; background: var(--ink); padding: 10px; border-radius: 4px; }
+.panel { position: relative; min-height: 300px; border: 3px solid var(--ink); background-color: var(--paper); color: var(--ink);
+  background-image: radial-gradient(rgba(22,20,26,.10) 1.1px, transparent 1.3px); background-size: 8px 8px; overflow: hidden;
+  display: flex; flex-direction: column; gap: 8px; padding: 10px; }
+.panel:nth-child(1) { background-color: var(--p1); }
+.panel:nth-child(2) { background-color: var(--p2); }
+.panel:nth-child(3) { background-color: var(--p3); }
+.panel:nth-child(4) { background-color: var(--p4); }
+.cap { position: relative; z-index: 2; align-self: flex-start; background: var(--accent); border: 2px solid var(--ink); font-family: var(--f-body); font-weight: 700; font-size: 13px; line-height: 1.3; padding: 5px 8px; max-width: 100%; }
+.cap.lesson { background: var(--ink); color: var(--accent); }
+.bubble { position: relative; z-index: 2; background: #fff; border: 2.5px solid var(--ink); border-radius: 18px; padding: 8px 12px; font-family: var(--f-hand); font-size: 17px; line-height: 1.25; max-width: 92%; }
+.bubble.l { align-self: flex-start; } .bubble.r { align-self: flex-end; }
+.bubble::after { content: ""; position: absolute; bottom: -14px; width: 18px; height: 16px; background: #fff; border: 2.5px solid var(--ink); border-top: 0; border-left: 0;
+  clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.bubble.l::after { left: 26px; transform: skewX(20deg); }
+.bubble.r::after { right: 26px; transform: scaleX(-1) skewX(20deg); }
+.scene { position: absolute; left: 0; right: 0; bottom: 0; height: 58%; z-index: 1; }
+.scene svg { width: 100%; height: 100%; display: block; }
+.book.hidden { display: none; }
+
+/* SIGNUP */
+.signup { background: var(--sky); color: var(--ink); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink);
+  background-image: radial-gradient(rgba(22,20,26,.12) 1.4px, transparent 1.6px); background-size: 10px 10px; }
+.signup .wrap { padding-block: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+.signup h2 { font-family: var(--f-display); font-weight: 900; font-size: clamp(26px, 4vw, 40px); line-height: 1.08; margin: 0 0 12px; text-wrap: balance; }
+.signup p { margin: 0; max-width: 32em; }
+form { display: grid; gap: 10px; background: var(--paper); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 20px; }
+label { font-weight: 500; font-size: 14px; }
+input { font: 16px var(--f-body); padding: 12px; border: 2px solid var(--ink); border-radius: 6px; background: #fff; color: var(--ink); width: 100%; }
+form .cta { justify-content: center; background: var(--pop); color: #fff; margin-top: 6px; }
+.note { font-size: 14px; min-height: 1.4em; }
+footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
+
+@media (max-width: 900px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+  .hero .wrap, .signup .wrap { grid-template-columns: 1fr; }
+  .hero .wrap { padding-block: 40px 48px; }
+  .burst { width: min(100%, 280px); }
+}
+@media (max-width: 520px) { .strip { grid-template-columns: minmax(0, 1fr); } .panel { min-height: 280px; } .bar { width: 110px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@keyframes pop { from { transform: scale(.92) rotate(-6deg); } to { transform: scale(1) rotate(-3deg); } }
+.burst svg { animation: pop .5s cubic-bezier(.2,1.6,.4,1) both; transform: rotate(-3deg); }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker">Free for founders</span>
+      <h1>8 business books. <em>As comics.</em></h1>
+      <p class="lede">The most important lessons from the books every founder should read. Each book fits into 4 panels you can read in a minute.</p>
+      <a class="cta" href="#books">Start reading ↓</a>
+      <div class="stats">
+        <div><b>8</b>books</div>
+        <div><b>32</b>panels</div>
+        <div><b>~10</b>minutes</div>
+      </div>
+    </div>
+    <div class="burst" aria-hidden="true">
+      <svg viewBox="0 0 360 360">
+        <polygon fill="#ef3e5c" stroke="#16141a" stroke-width="5" stroke-linejoin="round"
+          points="180,8 214,92 300,40 268,128 352,150 274,198 330,276 236,262 230,350 180,282 126,350 122,262 28,280 86,200 8,150 92,128 58,40 146,92"/>
+        <text x="180" y="168" text-anchor="middle" font-family="Unbounded, Arial Black, sans-serif" font-weight="900" font-size="44" fill="#fffdf8" stroke="#16141a" stroke-width="2" paint-order="stroke">BAM!</text>
+        <text x="180" y="212" text-anchor="middle" font-family="Pangolin, Comic Sans MS, cursive" font-size="24" fill="#fffdf8">A year of reading</text>
+        <text x="180" y="240" text-anchor="middle" font-family="Pangolin, Comic Sans MS, cursive" font-size="24" fill="#fffdf8">in 10 minutes</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap toolbar" id="books">
+    <div class="chips" role="group" aria-label="Filter by topic" id="chips"></div>
+    <div class="progress"><span id="progText">0 of 8 read</span><span class="bar"><i id="progBar"></i></span></div>
+  </div>
+  <div class="wrap books" id="list"></div>
+
+  <section class="signup">
+    <div class="wrap">
+      <div>
+        <h2>A new comic every week</h2>
+        <p>Leave your email and get a new book in 4 panels every Monday, plus a PDF with every lesson in one place.</p>
+      </div>
+      <form id="form" novalidate>
+        <label for="name">First name</label>
+        <input id="name" name="name" autocomplete="given-name" placeholder="Alex">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="alex@company.com" required>
+        <button class="cta" type="submit">Send me the comics</button>
+        <div class="note" id="note" role="status"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">Lessons are retold in our own words. Read the books too: this is only the start.</div></footer>
+
+<script>
+const BOOKS = [
+  { id:"lean", title:"The Lean Startup", author:"Eric Ries", tag:"Ideas", panels:[
+    { cap:"One year later…", a:["niki","shocked"], say:["a","I built the perfect app! …And nobody uses it."], prop:"down" },
+    { a:["niki","sad"], b:["mentor","normal"], say:["b","Why didn't you show it to 10 people in the first week?"] },
+    { cap:"The lesson: MVP", b:["mentor","happy"], say:["b","Build the smallest thing that tests your idea."], prop:"box" },
+    { cap:"Build → Measure → Learn. Repeat.", lesson:true, a:["niki","happy"], say:["a","A week, not a year!"], prop:"gear" }
+  ]},
+  { id:"zero", title:"Zero to One", author:"Peter Thiel", tag:"Ideas", panels:[
+    { a:["niki","happy"], b:["mentor","flat"], say:["a","I'm launching another online shoe store!"] },
+    { b:["mentor","normal"], say:["b","Competition eats profits. Why fight over crumbs?"], prop:"coins" },
+    { a:["niki","shocked"], b:["mentor","normal"], say:["b","What important truth do you know that very few people agree with?"] },
+    { cap:"Create something new (0→1), not a copy (1→n).", lesson:true, a:["niki","happy"], say:["a","A small market I can dominate!"], prop:"target" }
+  ]},
+  { id:"mom", title:"The Mom Test", author:"Rob Fitzpatrick", tag:"Sales", panels:[
+    { a:["niki","happy"], b:["mom","happy"], say:["a","Mom, would you buy my app?"] },
+    { a:["niki","happy"], b:["mom","happy"], say:["b","Of course, sweetie! It's wonderful!"] },
+    { cap:"Everyone lies when you ask about your idea.", b:["mentor","normal"], say:["b","Ask about the past: when did you last have this problem?"], prop:"bulb" },
+    { cap:"Talk about their life, not your idea.", lesson:true, a:["niki","happy"], say:["a","Compliments aren't data!"], prop:"chart" }
+  ]},
+  { id:"offers", title:"$100M Offers", author:"Alex Hormozi", tag:"Sales", panels:[
+    { a:["niki","sad"], say:["a","I cut my price 3 times. Still nobody buys."], prop:"down" },
+    { a:["niki","sad"], b:["mentor","normal"], say:["b","Price isn't the problem. Your offer is boring."] },
+    { cap:"Value = (Dream outcome × Likelihood of success) ÷ (Time × Effort)", b:["mentor","happy"], prop:"target" },
+    { cap:"Make an offer so good people feel stupid saying no.", lesson:true, a:["niki","happy"], say:["a","I added a guarantee, raised the price, and sell more!"], prop:"coins" }
+  ]},
+  { id:"emyth", title:"The E-Myth Revisited", author:"Michael E. Gerber", tag:"Systems", panels:[
+    { cap:"6 a.m. … 11 p.m.", a:["niki","sad"], say:["a","I'm the boss, the cashier, the cleaner and the accountant."], prop:"clock" },
+    { a:["niki","shocked"], b:["mentor","normal"], say:["b","You don't own a business. You own a job. An exhausting one."] },
+    { b:["mentor","happy"], say:["b","Turn every task into a system someone else can follow."], prop:"gear" },
+    { cap:"Work ON your business, not IN it.", lesson:true, a:["niki","happy"], say:["a","I'm building it like I'll franchise it!"], prop:"box" }
+  ]},
+  { id:"atomic", title:"Atomic Habits", author:"James Clear", tag:"Productivity", panels:[
+    { a:["niki","happy"], b:["mentor","flat"], say:["a","Starting Monday: 5 hours of marketing a day!"], prop:null },
+    { cap:"Wednesday.", a:["niki","sad"], say:["a","…I quit."], prop:"calendar" },
+    { b:["mentor","happy"], say:["b","1% better every day makes you 37 times better in a year."], prop:"chart" },
+    { cap:"Systems beat goals.", lesson:true, a:["niki","happy"], say:["a","One post a day. Every day."], prop:"calendar" }
+  ]},
+  { id:"rework", title:"Rework", author:"Jason Fried & David Heinemeier Hansson", tag:"Productivity", panels:[
+    { a:["niki","shocked"], say:["a","I need investors, an office and 20 employees to get started!"], prop:"coins" },
+    { a:["niki","flat"], b:["mentor","normal"], say:["b","You need a product and one paying customer."] },
+    { cap:"Constraints are an advantage.", b:["mentor","happy"], say:["b","A small team means fast decisions."], prop:"rocket" },
+    { cap:"Build half a product, not a half-assed product.", lesson:true, a:["niki","happy"], say:["a","Launching on Friday!"], prop:"rocket" }
+  ]},
+  { id:"startup100", title:"The $100 Startup", author:"Chris Guillebeau", tag:"Sales", panels:[
+    { a:["niki","sad"], b:["mentor","happy"], say:["a","I don't have money to start a business."] },
+    { b:["mentor","normal"], say:["b","What do people already ask you for advice about?"], prop:"bulb" },
+    { cap:"Passion + skill + something people will pay for.", a:["niki","shocked"], prop:"target" },
+    { cap:"Start small and sell something this week.", lesson:true, a:["niki","happy"], say:["a","First 3 customers: $150!"], prop:"coins" }
+  ]}
+];
+const MAIN_LESSON = {
+  lean:"Test fast and cheap before you build.",
+  zero:"Don't compete. Create something that has no equal.",
+  mom:"Ask questions people can't lie to you about.",
+  offers:"Sell value, not price.",
+  emyth:"Build systems so everything doesn't depend on you.",
+  atomic:"Small habits repeated daily win.",
+  rework:"Launch less, sooner, with fewer people.",
+  startup100:"Start with what you already know and sell right away."
+};
+
+/* ---------- drawing ---------- */
+const INK = "#16141a";
+const SHIRT = { niki:"#ffd23f", mentor:"#2ec4f1", mom:"#ef3e5c" };
+function eyes(x, y, mood, look) {
+  const out = [];
+  for (const ex of [x - 11 + look, x + 11 + look]) {
+    if (mood === "happy") out.push(`<path d="M${ex-5} ${y+2} Q${ex} ${y-5} ${ex+5} ${y+2}" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`);
+    else if (mood === "shocked") out.push(`<circle cx="${ex}" cy="${y}" r="6.5" fill="#fff" stroke="${INK}" stroke-width="2.5"/><circle cx="${ex}" cy="${y}" r="2.2" fill="${INK}"/>`);
+    else out.push(`<circle cx="${ex}" cy="${y}" r="3.2" fill="${INK}"/>`);
+  }
+  if (mood === "sad") {
+    out.push(`<path d="M${x-17+look} ${y-11} L${x-6+look} ${y-7}" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`);
+    out.push(`<path d="M${x+17+look} ${y-11} L${x+6+look} ${y-7}" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`);
+  }
+  return out.join("");
+}
+function mouth(x, y, mood) {
+  if (mood === "happy") return `<path d="M${x-11} ${y} Q${x} ${y+13} ${x+11} ${y}" fill="#fff" stroke="${INK}" stroke-width="3" stroke-linejoin="round"/>`;
+  if (mood === "shocked") return `<ellipse cx="${x}" cy="${y+4}" rx="6" ry="8" fill="${INK}"/>`;
+  if (mood === "sad") return `<path d="M${x-9} ${y+7} Q${x} ${y-2} ${x+9} ${y+7}" fill="none" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`;
+  return `<path d="M${x-8} ${y+3} L${x+8} ${y+3}" stroke="${INK}" stroke-width="3" stroke-linecap="round"/>`;
+}
+function person(kind, mood, x, look) {
+  const hy = 150, s = [];
+  s.push(`<path d="M${x-40} 250 Q${x-40} 192 ${x} 190 Q${x+40} 192 ${x+40} 250 Z" fill="${SHIRT[kind]}" stroke="${INK}" stroke-width="3.5"/>`);
+  if (kind === "mom") s.push(`<circle cx="${x}" cy="${hy-36}" r="13" fill="#8b4a2b" stroke="${INK}" stroke-width="3"/>`);
+  s.push(`<circle cx="${x}" cy="${hy}" r="31" fill="var(--skin)" stroke="${INK}" stroke-width="3.5"/>`);
+  if (kind === "niki") s.push(`<path d="M${x-31} ${hy-2} Q${x-35} ${hy-34} ${x-12} ${hy-31} L${x-6} ${hy-44} L${x+4} ${hy-31} L${x+16} ${hy-42} L${x+18} ${hy-28} Q${x+35} ${hy-26} ${x+31} ${hy-2} Q${x+16} ${hy-20} ${x-31} ${hy-2} Z" fill="${INK}"/>`);
+  if (kind === "mom") s.push(`<path d="M${x-31} ${hy+4} Q${x-34} ${hy-32} ${x} ${hy-32} Q${x+34} ${hy-32} ${x+31} ${hy+4} Q${x+20} ${hy-16} ${x} ${hy-18} Q${x-20} ${hy-16} ${x-31} ${hy+4} Z" fill="#8b4a2b" stroke="${INK}" stroke-width="3"/>`);
+  if (kind === "mentor") {
+    s.push(`<ellipse cx="${x-30}" cy="${hy-10}" rx="9" ry="13" fill="#cfcbd6" stroke="${INK}" stroke-width="3"/>`);
+    s.push(`<ellipse cx="${x+30}" cy="${hy-10}" rx="9" ry="13" fill="#cfcbd6" stroke="${INK}" stroke-width="3"/>`);
+  }
+  s.push(eyes(x, hy - 2, mood, look));
+  if (kind === "mentor") s.push(`<circle cx="${x-11+look}" cy="${hy-2}" r="10" fill="none" stroke="${INK}" stroke-width="3"/><circle cx="${x+11+look}" cy="${hy-2}" r="10" fill="none" stroke="${INK}" stroke-width="3"/><path d="M${x-1+look} ${hy-3} L${x+1+look} ${hy-3}" stroke="${INK}" stroke-width="3"/>`);
+  s.push(mouth(x, hy + 14, mood));
+  return s.join("");
+}
+function prop(name, x) {
+  const st = `stroke="${INK}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"`;
+  switch (name) {
+    case "bulb": return `<g ${st}><path d="M${x-30} 108 L${x-42} 98 M${x+30} 108 L${x+42} 98 M${x} 82 L${x} 68 M${x-36} 140 L${x-50} 140 M${x+36} 140 L${x+50} 140" fill="none"/><circle cx="${x}" cy="132" r="28" fill="#ffd23f"/><rect x="${x-14}" y="158" width="28" height="22" rx="3" fill="#cfcbd6"/></g>`;
+    case "down": return `<g ${st}><rect x="${x-50}" y="100" width="100" height="80" fill="#fff"/><polyline points="${x-40},115 ${x-15},135 ${x+5},128 ${x+38},168" fill="none" stroke="#ef3e5c" stroke-width="5"/><path d="M${x+24} 168 L${x+40} 170 L${x+38} 154" fill="none" stroke="#ef3e5c" stroke-width="5"/></g>`;
+    case "chart": return `<g ${st}><rect x="${x-50}" y="100" width="100" height="80" fill="#fff"/><rect x="${x-38}" y="150" width="16" height="24" fill="#2ec4f1"/><rect x="${x-14}" y="134" width="16" height="40" fill="#2ec4f1"/><rect x="${x+10}" y="114" width="16" height="60" fill="#ffd23f"/><path d="M${x-40} 140 L${x+30} 104 M${x+16} 102 L${x+32} 103 L${x+28} 118" fill="none" stroke="#ef3e5c" stroke-width="4.5"/></g>`;
+    case "coins": return `<g ${st}>${[0,1,2,3].map(i=>`<ellipse cx="${x}" cy="${190-i*16}" rx="30" ry="10" fill="#ffd23f"/><path d="M${x-30} ${190-i*16} L${x-30} ${178-i*16} M${x+30} ${190-i*16} L${x+30} ${178-i*16}" fill="none"/>`).join("")}<ellipse cx="${x}" cy="130" rx="30" ry="10" fill="#ffd23f"/><text x="${x}" y="136" text-anchor="middle" font-family="Unbounded, sans-serif" font-weight="900" font-size="14" fill="${INK}" stroke="none">$</text></g>`;
+    case "target": return `<g ${st}><circle cx="${x}" cy="140" r="44" fill="#ef3e5c"/><circle cx="${x}" cy="140" r="30" fill="#fff"/><circle cx="${x}" cy="140" r="15" fill="#ef3e5c"/><path d="M${x+56} 96 L${x+4} 136" fill="none" stroke-width="4"/><path d="M${x+56} 96 L${x+64} 92 M${x+56} 96 L${x+58} 86" fill="none"/></g>`;
+    case "gear": { let t=""; for(let i=0;i<8;i++){t+=`<rect x="${x-8}" y="88" width="16" height="22" fill="#2ec4f1" transform="rotate(${i*45} ${x} 140)"/>`;} return `<g ${st}>${t}<circle cx="${x}" cy="140" r="38" fill="#2ec4f1"/><circle cx="${x}" cy="140" r="13" fill="#fff"/></g>`; }
+    case "clock": return `<g ${st}><circle cx="${x}" cy="140" r="44" fill="#fff"/><path d="M${x} 140 L${x} 110 M${x} 140 L${x+22} 152" fill="none" stroke-width="5"/><circle cx="${x}" cy="140" r="4" fill="${INK}"/><path d="M${x-30} 92 L${x-46} 80 M${x+30} 92 L${x+46} 80" fill="none"/></g>`;
+    case "calendar": return `<g ${st}><rect x="${x-44}" y="100" width="88" height="80" rx="6" fill="#fff"/><rect x="${x-44}" y="100" width="88" height="22" rx="6" fill="#ef3e5c"/>${[0,1,2].map(r=>[0,1,2,3].map(c=>`<rect x="${x-34+c*19}" y="${130+r*15}" width="11" height="9" fill="${(r*4+c)%3===0?"#ffd23f":"#fff"}" stroke-width="2"/>`).join("")).join("")}</g>`;
+    case "box": return `<g ${st}><path d="M${x-40} 130 L${x} 112 L${x+40} 130 L${x} 148 Z" fill="#ffe0a3"/><path d="M${x-40} 130 L${x-40} 176 L${x} 194 L${x} 148 Z" fill="#ffd23f"/><path d="M${x+40} 130 L${x+40} 176 L${x} 194 L${x} 148 Z" fill="#e8b92c"/></g>`;
+    case "rocket": return `<g ${st}><path d="M${x-14} 176 Q${x} 210 ${x+14} 176 Z" fill="#ef3e5c"/><path d="M${x-18} 170 Q${x-22} 110 ${x} 84 Q${x+22} 110 ${x+18} 170 Z" fill="#fff"/><circle cx="${x}" cy="124" r="9" fill="#2ec4f1"/><path d="M${x-18} 146 L${x-34} 172 L${x-18} 168 Z M${x+18} 146 L${x+34} 172 L${x+18} 168 Z" fill="#ef3e5c"/></g>`;
+    default: return "";
+  }
+}
+function scene(p) {
+  const parts = [];
+  const hasA = !!p.a, hasB = !!p.b;
+  if (hasA && hasB) { parts.push(person(p.a[0], p.a[1], 95, 3)); parts.push(person(p.b[0], p.b[1], 225, -3)); }
+  else if (hasA) { parts.push(person(p.a[0], p.a[1], p.prop ? 95 : 160, p.prop ? 3 : 0)); if (p.prop) parts.push(prop(p.prop, 225)); }
+  else if (hasB) { parts.push(person(p.b[0], p.b[1], p.prop ? 225 : 160, p.prop ? -3 : 0)); if (p.prop) parts.push(prop(p.prop, 95)); }
+  return `<svg viewBox="0 0 320 250" preserveAspectRatio="xMidYMax meet" aria-hidden="true">${parts.join("")}</svg>`;
+}
+function bubbleSide(p) {
+  if (!p.say) return "";
+  const who = p.say[0];
+  if (who === "a") return (p.b || !p.prop) && p.b ? "l" : "l";
+  return p.a || p.prop ? "r" : "l";
+}
+function esc(s) { return s.replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+/* ---------- state ---------- */
+let read = {};
+try { read = JSON.parse(localStorage.getItem("comic-read") || "{}") || {}; } catch (e) { read = {}; }
+function saveRead() { try { localStorage.setItem("comic-read", JSON.stringify(read)); } catch (e) {} }
+
+const list = document.getElementById("list");
+list.innerHTML = BOOKS.map(b => `
+  <article class="book" data-tag="${b.tag}" id="book-${b.id}">
+    <div class="book-head">
+      <div>
+        <h2>${esc(b.title)}</h2>
+        <div class="meta">${esc(b.author)} <span class="tag">${b.tag}</span></div>
+        <div class="meta"><b style="color:var(--fg)">Key lesson:</b> ${esc(MAIN_LESSON[b.id])}</div>
+      </div>
+      <button class="done" type="button" data-id="${b.id}" aria-pressed="false">Mark as read</button>
+    </div>
+    <div class="strip">
+      ${b.panels.map(p => `
+        <div class="panel">
+          ${p.cap ? `<div class="cap${p.lesson ? " lesson" : ""}">${esc(p.cap)}</div>` : ""}
+          ${p.say ? `<div class="bubble ${bubbleSide(p)}">${esc(p.say[1])}</div>` : ""}
+          <div class="scene">${scene(p)}</div>
+        </div>`).join("")}
+    </div>
+  </article>`).join("");
+
+function renderProgress() {
+  const n = BOOKS.filter(b => read[b.id]).length;
+  document.getElementById("progText").textContent = `${n} of ${BOOKS.length} read`;
+  document.getElementById("progBar").style.width = (n / BOOKS.length * 100) + "%";
+  document.querySelectorAll(".done").forEach(btn => {
+    const on = !!read[btn.dataset.id];
+    btn.setAttribute("aria-pressed", on);
+    btn.textContent = on ? "✓ Read" : "Mark as read";
+  });
+}
+list.addEventListener("click", e => {
+  const btn = e.target.closest(".done"); if (!btn) return;
+  read[btn.dataset.id] = !read[btn.dataset.id]; saveRead(); renderProgress();
+});
+renderProgress();
+
+const tags = ["All", ...new Set(BOOKS.map(b => b.tag))];
+const chips = document.getElementById("chips");
+chips.innerHTML = tags.map((t, i) => `<button class="chip" type="button" aria-pressed="${i === 0}">${t}</button>`).join("");
+chips.addEventListener("click", e => {
+  const c = e.target.closest(".chip"); if (!c) return;
+  chips.querySelectorAll(".chip").forEach(x => x.setAttribute("aria-pressed", x === c));
+  const t = c.textContent;
+  document.querySelectorAll(".book").forEach(b => b.classList.toggle("hidden", t !== "All" && b.dataset.tag !== t));
+});
+
+document.getElementById("form").addEventListener("submit", e => {
+  e.preventDefault();
+  const email = document.getElementById("email");
+  const note = document.getElementById("note");
+  if (!/^\S+@\S+\.\S+$/.test(email.value.trim())) { note.textContent = "Enter a valid email, for example alex@company.com."; email.focus(); return; }
+  note.textContent = "This form isn't connected to an email service yet. It will be before launch.";
+});
+</script>
+
+</body>
+</html>
