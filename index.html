@@ -105,11 +105,21 @@ h1 em { font-style: normal; color: var(--paper); -webkit-text-stroke: 2px var(--
 .signup .wrap { padding-block: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
 .signup h2 { font-family: var(--f-display); font-weight: 900; font-size: clamp(26px, 4vw, 40px); line-height: 1.08; margin: 0 0 12px; text-wrap: balance; }
 .signup p { margin: 0; max-width: 32em; }
-form { display: grid; gap: 10px; background: var(--paper); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 20px; }
+.row-form form { display: grid; gap: 10px; background: var(--paper); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 20px; }
 label { font-weight: 500; font-size: 14px; }
 input { font: 16px var(--f-body); padding: 12px; border: 2px solid var(--ink); border-radius: 6px; background: #fff; color: var(--ink); width: 100%; }
-form .cta { justify-content: center; background: var(--pop); color: #fff; margin-top: 6px; }
+.row-form .cta { justify-content: center; background: var(--pop); color: #fff; margin-top: 6px; }
 .note { font-size: 14px; min-height: 1.4em; }
+.ml-form-embedContainer form { display: grid; gap: 12px; }
+.ml-form-formContent { display: grid; gap: 12px; }
+.ml-field-group { display: grid; gap: 6px; }
+.ml-form-recaptcha { min-height: 78px; max-width: 100%; overflow: hidden; }
+.ml-form-embedSubmit { display: grid; }
+.ml-error input { border-color: var(--pop) !important; box-shadow: 0 0 0 2px var(--pop); }
+.ml-error.ml-form-recaptcha iframe { outline: 2px solid var(--pop); }
+.row-success .success { background: var(--paper); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 24px; }
+.row-success h3 { font-family: var(--f-display); font-weight: 900; font-size: 26px; margin: 0 0 8px; }
+.row-success p { margin: 0; }
 footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
 
 @media (max-width: 900px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -164,14 +174,37 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
         <h2>A new comic every week</h2>
         <p>Leave your email and get a new book in 4 panels every Monday, plus a PDF with every lesson in one place.</p>
       </div>
-      <form id="form" novalidate>
-        <label for="name">First name</label>
-        <input id="name" name="name" autocomplete="given-name" placeholder="Alex">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email" placeholder="alex@company.com" required>
-        <button class="cta" type="submit">Send me the comics</button>
-        <div class="note" id="note" role="status"></div>
-      </form>
+      <div id="mlb2-48889442" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-48889442">
+        <div class="ml-form-embedBody row-form">
+          <form id="form" class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2815924/forms/204844333629703950/subscribe" data-code="" method="post" target="_blank">
+            <div class="ml-form-formContent">
+              <div class="ml-form-fieldRow ml-field-group ml-field-name">
+                <label for="name">First name</label>
+                <input id="name" type="text" name="fields[name]" autocomplete="given-name" placeholder="Alex">
+              </div>
+              <div class="ml-form-fieldRow ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                <label for="email">Email</label>
+                <input id="email" type="email" class="form-control" name="fields[email]" autocomplete="email" placeholder="alex@company.com" aria-required="true">
+              </div>
+            </div>
+            <div class="ml-form-recaptcha ml-validate-required">
+              <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD"></div>
+            </div>
+            <input type="hidden" name="ml-submit" value="1">
+            <div class="ml-form-embedSubmit">
+              <button type="submit" class="cta primary">Send me the comics</button>
+              <button disabled="disabled" style="display: none;" type="button" class="cta loading">Sending…</button>
+            </div>
+            <input type="hidden" name="anticsrf" value="true">
+          </form>
+        </div>
+        <div class="ml-form-successBody row-success" style="display: none">
+          <div class="success">
+            <h3>You're in!</h3>
+            <p>Check your inbox. Your first comic is on its way.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -362,14 +395,14 @@ chips.addEventListener("click", e => {
   document.querySelectorAll(".book").forEach(b => b.classList.toggle("hidden", t !== "All" && b.dataset.tag !== t));
 });
 
-document.getElementById("form").addEventListener("submit", e => {
-  e.preventDefault();
-  const email = document.getElementById("email");
-  const note = document.getElementById("note");
-  if (!/^\S+@\S+\.\S+$/.test(email.value.trim())) { note.textContent = "Enter a valid email, for example alex@company.com."; email.focus(); return; }
-  note.textContent = "This form isn't connected to an email service yet. It will be before launch.";
-});
+function ml_webform_success_48889442() {
+  document.querySelector(".ml-subscribe-form-48889442 .row-form").style.display = "none";
+  document.querySelector(".ml-subscribe-form-48889442 .row-success").style.display = "block";
+}
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v83147fa8ce2d95cb73ece7f28b469519"></script>
+<script>fetch("https://assets.mailerlite.com/jsonp/2815924/forms/204844333629703950/takel").catch(function(){});</script>
 
 </body>
 </html>
