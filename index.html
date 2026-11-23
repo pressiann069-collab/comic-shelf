@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="The key lessons from 8 business books every founder should read, told as 4-panel comics.">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+ <meta property="og:title" content="The one skill behind every success story">
+<meta property="og:description" content="A free 30-page comic about the skill nobody teaches, plus 8 business books as comics.">
+<meta property="og:image" content="https://comic-shelf-nbxd.netlify.app/focus/page-1.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <title>The Founder's Comic Shelf</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Pangolin&family=Rubik:wght@400;500;700&display=swap">
@@ -46,7 +50,8 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
 .hero { background: var(--accent); color: var(--ink); border-bottom: 4px solid var(--ink);
   background-image: radial-gradient(rgba(22,20,26,.14) 1.4px, transparent 1.6px); background-size: 10px 10px;
   margin-top: calc(-1 * env(safe-area-inset-top, 0px)); padding-top: calc(env(safe-area-inset-top, 0px) + 0px); }
-.hero .wrap { padding-block: 56px 64px; display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
+.hero .wrap { padding-block: 56px 64px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; }
+.hero .wrap > div { min-width: 0; }
 .kicker { display: inline-block; font-family: var(--f-display); font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
   background: var(--ink); color: var(--accent); padding: 6px 12px; transform: rotate(-2deg); }
 h1 { font-family: var(--f-display); font-weight: 900; font-size: clamp(34px, 6vw, 64px); line-height: 1.02; margin: 18px 0 18px; text-wrap: balance; letter-spacing: -.01em; }
@@ -120,6 +125,29 @@ input { font: 16px var(--f-body); padding: 12px; border: 2px solid var(--ink); b
 .row-success .success { background: var(--paper); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 24px; }
 .row-success h3 { font-family: var(--f-display); font-weight: 900; font-size: 26px; margin: 0 0 8px; }
 .row-success p { margin: 0; }
+/* SIGNUP CARD (hero) */
+.signup-card { background: var(--paper); color: var(--ink); border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); padding: 22px; min-width: 0; }
+.signup-card .row-form form { border: 0; box-shadow: none; padding: 0; background: none; }
+.card-title { font-family: var(--f-display); font-weight: 900; font-size: 22px; line-height: 1.15; margin: 0 0 14px; }
+.cta.ghost { background: transparent; box-shadow: none; border-width: 2px; padding: 11px 18px; font-size: 14px; }
+.cta.ghost:hover { box-shadow: 4px 4px 0 var(--ink); }
+/* PREVIEW */
+.preview { padding-block: 56px 24px; }
+.eyebrow { font-family: var(--f-display); font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--pop); margin: 0 0 8px; text-align: center; }
+.sec-title { font-family: var(--f-display); font-weight: 900; font-size: clamp(26px, 4vw, 40px); line-height: 1.08; margin: 0 0 28px; text-align: center; text-wrap: balance; }
+.pages { display: grid; gap: 20px; max-width: 720px; margin: 0 auto; }
+.pages img, .gate-peek { width: 100%; height: auto; display: block; border: 3px solid var(--line); }
+.gate { position: relative; max-width: 720px; margin: 20px auto 0; height: 420px; overflow: hidden; }
+.gate-peek { filter: blur(7px) brightness(.7); transform: scale(1.04); }
+.gate-card { position: absolute; inset: auto 16px 24px; margin: 0 auto; max-width: 480px; background: var(--paper); color: var(--ink); border: 3px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); padding: 22px; text-align: center; display: grid; gap: 12px; justify-items: center; }
+.gate-kicker { margin: 0; font-family: var(--f-display); font-weight: 600; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--pop); }
+.gate-card h3 { margin: 0; font-family: var(--f-display); font-weight: 900; font-size: 20px; line-height: 1.2; text-wrap: balance; }
+.gate-card .cta { background: var(--pop); color: #fff; }
+.bonus-head { padding-block: 48px 0; }
+.bonus-head .sec-title { margin-bottom: 0; }
+.row-success .cta { margin-top: 14px; background: var(--pop); color: #fff; }
+.flash { animation: flash 1.2s ease-out 1; }
+@keyframes flash { 0% { box-shadow: 0 0 0 0 var(--pop); } 40% { box-shadow: 0 0 0 10px var(--pop); } 100% { box-shadow: 8px 8px 0 var(--ink); } }
 footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
 
 @media (max-width: 900px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -139,41 +167,18 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
 <header class="hero">
   <div class="wrap">
     <div>
-      <span class="kicker">Free for founders</span>
-      <h1>8 business books. <em>As comics.</em></h1>
-      <p class="lede">The most important lessons from the books every founder should read. Each book fits into 4 panels you can read in a minute.</p>
-      <a class="cta" href="#books">Start reading ↓</a>
+      <span class="kicker">Free comic · Volume 1</span>
+      <h1>The one skill behind <em>every success story.</em></h1>
+      <p class="lede">A 30-page comic about the skill nobody teaches. Read the first 5 pages free below. Get the full volume, plus a new business-book comic every Monday, straight to your inbox.</p>
+      <a class="cta ghost" href="#preview">Read the first 5 pages ↓</a>
       <div class="stats">
-        <div><b>8</b>books</div>
-        <div><b>32</b>panels</div>
-        <div><b>~10</b>minutes</div>
+        <div><b>30</b>pages</div>
+        <div><b>8</b>book comics</div>
+        <div><b>$0</b>forever</div>
       </div>
     </div>
-    <div class="burst" aria-hidden="true">
-      <svg viewBox="0 0 360 360">
-        <polygon fill="#ef3e5c" stroke="#16141a" stroke-width="5" stroke-linejoin="round"
-          points="180,8 214,92 300,40 268,128 352,150 274,198 330,276 236,262 230,350 180,282 126,350 122,262 28,280 86,200 8,150 92,128 58,40 146,92"/>
-        <text x="180" y="168" text-anchor="middle" font-family="Unbounded, Arial Black, sans-serif" font-weight="900" font-size="44" fill="#fffdf8" stroke="#16141a" stroke-width="2" paint-order="stroke">BAM!</text>
-        <text x="180" y="212" text-anchor="middle" font-family="Pangolin, Comic Sans MS, cursive" font-size="24" fill="#fffdf8">A year of reading</text>
-        <text x="180" y="240" text-anchor="middle" font-family="Pangolin, Comic Sans MS, cursive" font-size="24" fill="#fffdf8">in 10 minutes</text>
-      </svg>
-    </div>
-  </div>
-</header>
-
-<main>
-  <div class="wrap toolbar" id="books">
-    <div class="chips" role="group" aria-label="Filter by topic" id="chips"></div>
-    <div class="progress"><span id="progText">0 of 8 read</span><span class="bar"><i id="progBar"></i></span></div>
-  </div>
-  <div class="wrap books" id="list"></div>
-
-  <section class="signup">
-    <div class="wrap">
-      <div>
-        <h2>A new comic every week</h2>
-        <p>Leave your email and get a new book in 4 panels every Monday, plus a PDF with every lesson in one place.</p>
-      </div>
+    <div class="signup-card" id="signup">
+      <h2 class="card-title">Get all 30 pages free</h2>
       <div id="mlb2-48889442" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-48889442">
         <div class="ml-form-embedBody row-form">
           <form id="form" class="ml-block-form" action="https://assets.mailerlite.com/jsonp/2815924/forms/204844333629703950/subscribe" data-code="" method="post" target="_blank">
@@ -192,7 +197,7 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
             </div>
             <input type="hidden" name="ml-submit" value="1">
             <div class="ml-form-embedSubmit">
-              <button type="submit" class="cta primary">Send me the comics</button>
+              <button type="submit" class="cta primary">Send me all 30 pages</button>
               <button disabled="disabled" style="display: none;" type="button" class="cta loading">Sending…</button>
             </div>
             <input type="hidden" name="anticsrf" value="true">
@@ -201,12 +206,48 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
         <div class="ml-form-successBody row-success" style="display: none">
           <div class="success">
             <h3>You're in!</h3>
-            <p>Check your inbox. Your first comic is on its way.</p>
+            <p>Volume 1 is on its way to your inbox. Can't wait?</p>
+            <a class="cta" href="volume-1/#page-6">Keep reading from page 6 →</a>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</header>
+
+<main>
+  <section class="preview" id="preview">
+    <div class="wrap">
+      <p class="eyebrow">Volume 1 · Focus</p>
+      <h2 class="sec-title">Read the first 5 pages</h2>
+      <div class="pages">
+        <img src="focus/page-1.jpg" alt="Focus, Volume 1, page 1" width="1000" height="1502" loading="eager">
+        <img src="focus/page-2.jpg" alt="Focus, Volume 1, page 2" width="1000" height="1502" loading="lazy">
+        <img src="focus/page-3.jpg" alt="Focus, Volume 1, page 3" width="1000" height="1502" loading="lazy">
+        <img src="focus/page-4.jpg" alt="Focus, Volume 1, page 4" width="1000" height="1502" loading="lazy">
+        <img src="focus/page-5.jpg" alt="Focus, Volume 1, page 5" width="1000" height="1502" loading="lazy">
+      </div>
+      <div class="gate">
+        <img class="gate-peek" src="focus/page-6.jpg" alt="" width="1000" height="1000" loading="lazy">
+        <div class="gate-card">
+          <p class="gate-kicker">Pages 6–30 are waiting</p>
+          <h3>He just hit the wall. What he does next changes everything.</h3>
+          <a class="cta" href="#signup" id="unlock">Unlock the rest free ↑</a>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <div class="wrap bonus-head">
+    <p class="eyebrow">Bonus</p>
+    <h2 class="sec-title">8 business books, 4 panels each</h2>
+  </div>
+  <div class="wrap toolbar" id="books">
+    <div class="chips" role="group" aria-label="Filter by topic" id="chips"></div>
+    <div class="progress"><span id="progText">0 of 8 read</span><span class="bar"><i id="progBar"></i></span></div>
+  </div>
+  <div class="wrap books" id="list"></div>
+
 </main>
 
 <footer><div class="wrap">Lessons are retold in our own words. Read the books too: this is only the start.</div></footer>
@@ -395,6 +436,12 @@ chips.addEventListener("click", e => {
   document.querySelectorAll(".book").forEach(b => b.classList.toggle("hidden", t !== "All" && b.dataset.tag !== t));
 });
 
+document.getElementById("unlock").addEventListener("click", function (e) {
+  e.preventDefault();
+  var card = document.getElementById("signup");
+  card.scrollIntoView({ behavior: "smooth", block: "center" });
+  setTimeout(function () { var em = document.getElementById("email"); if (em) em.focus({ preventScroll: true }); card.classList.remove("flash"); void card.offsetWidth; card.classList.add("flash"); }, 450);
+});
 function ml_webform_success_48889442() {
   document.querySelector(".ml-subscribe-form-48889442 .row-form").style.display = "none";
   document.querySelector(".ml-subscribe-form-48889442 .row-success").style.display = "block";

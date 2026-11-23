@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Focus · Volume 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;900&family=Rubik:wght@400;500&display=swap">
+<style>
+/* Reader: dark reading room, one page after another, page number above each. Single dark look by design. */
+:root {
+  color-scheme: dark;
+  --bg: #0d0c12; --fg: #f1eef6; --muted: #9a95a6; --line: #2a2733; --accent: #ffd23f; --pop: #ef3e5c;
+  --f-display: "Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-body: "Rubik", system-ui, -apple-system, "Segoe UI", sans-serif;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.5 var(--f-body); }
+.wrap { max-width: 820px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(13,12,18,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px; }
+.brand { color: var(--fg); text-decoration: none; font-family: var(--f-display); font-weight: 600; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+.count { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar { height: 3px; background: var(--line); }
+.bar i { display: block; height: 100%; width: 0; background: var(--accent); }
+.intro { text-align: center; padding-block: 48px 24px; }
+.intro p { margin: 0 0 8px; font-family: var(--f-display); font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1 { margin: 0; font-family: var(--f-display); font-weight: 900; font-size: clamp(32px, 6vw, 56px); line-height: 1.05; }
+.pages { display: grid; gap: 28px; padding-block: 24px 48px; }
+figure { margin: 0; scroll-margin-top: 70px; }
+figcaption { font-size: 13px; color: var(--muted); margin-bottom: 8px; font-variant-numeric: tabular-nums; }
+figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); background: #1a1822; }
+.end { text-align: center; border-top: 1px solid var(--line); padding-block: 48px 64px; }
+.end h2 { font-family: var(--f-display); font-weight: 900; font-size: clamp(24px, 4vw, 34px); margin: 0 0 10px; }
+.end p { color: var(--muted); max-width: 34em; margin: 0 auto 22px; }
+.cta { display: inline-block; font-family: var(--f-display); font-weight: 600; font-size: 14px; text-decoration: none; color: #16141a; background: var(--accent); padding: 14px 22px; border: 2px solid var(--accent); }
+.cta:focus-visible, .brand:focus-visible { outline: 3px solid var(--pop); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="../">← Founder's Comic Shelf</a>
+    <span class="count" id="count">Page 1 of 30</span>
+  </div>
+  <div class="bar"><i id="bar"></i></div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <p>Volume 1</p>
+    <h1>Focus</h1>
+  </div>
+  <div class="pages" id="pages"></div>
+  <section class="end">
+    <h2 id="endTitle">To be continued…</h2>
+    <p id="endText">Volume 2 is in the works. Every Monday you also get one business book in 4 panels, straight to your inbox.</p>
+    <a class="cta" href="../#books">Read the 8 book comics →</a>
+  </section>
+</main>
+
+<script>
+// Pages available on the site. Add new numbers here as pages are uploaded.
+var AVAILABLE = 10;
+var TOTAL = 30;
+var SIZES = { 6: [1000, 1000], 9: [1000, 1333], 10: [1000, 1348] };
+var html = "";
+for (var i = 1; i <= AVAILABLE; i++) {
+  var sz = SIZES[i] || [1000, 1502];
+  html += '<figure id="page-' + i + '"><figcaption>Page ' + i + ' of ' + TOTAL + '</figcaption>' +
+    '<img src="../focus/page-' + i + '.jpg" alt="Focus, Volume 1, page ' + i + '" width="' + sz[0] + '" height="' + sz[1] + '" loading="' + (i <= 2 ? 'eager' : 'lazy') + '"></figure>';
+}
+document.getElementById("pages").innerHTML = html;
+if (AVAILABLE < TOTAL) {
+  document.getElementById("endTitle").textContent = "More pages coming soon";
+  document.getElementById("endText").textContent = "Pages " + (AVAILABLE + 1) + "–" + TOTAL + " are on their way. Every Monday you also get one business book in 4 panels, straight to your inbox.";
+}
+var figs = Array.prototype.slice.call(document.querySelectorAll("figure"));
+var count = document.getElementById("count"), bar = document.getElementById("bar");
+function update() {
+  var current = 1;
+  for (var j = 0; j < figs.length; j++) { if (figs[j].getBoundingClientRect().top < window.innerHeight * 0.5) current = j + 1; }
+  count.textContent = "Page " + current + " of " + TOTAL;
+  bar.style.width = (current / TOTAL * 100) + "%";
+}
+window.addEventListener("scroll", update, { passive: true });
+update();
+</script>
+</body>
+</html>
