@@ -103,6 +103,8 @@ h1 em { font-style: normal; color: var(--paper); -webkit-text-stroke: 2px var(--
 .scene { position: absolute; left: 0; right: 0; bottom: 0; height: 58%; z-index: 1; }
 .scene svg { width: 100%; height: 100%; display: block; }
 .book.hidden { display: none; }
+.strip.art { background: none; padding: 0; gap: 12px; }
+.art-panel { width: 100%; height: auto; display: block; }
 
 /* SIGNUP */
 .signup { background: var(--sky); color: var(--ink); border-top: 4px solid var(--ink); border-bottom: 4px solid var(--ink);
@@ -254,13 +256,13 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
 
 <script>
 const BOOKS = [
-  { id:"lean", title:"The Lean Startup", author:"Eric Ries", tag:"Ideas", panels:[
-    { cap:"One year later…", a:["niki","shocked"], say:["a","I built the perfect app! …And nobody uses it."], prop:"down" },
-    { a:["niki","sad"], b:["mentor","normal"], say:["b","Why didn't you show it to 10 people in the first week?"] },
-    { cap:"The lesson: MVP", b:["mentor","happy"], say:["b","Build the smallest thing that tests your idea."], prop:"box" },
-    { cap:"Build → Measure → Learn. Repeat.", lesson:true, a:["niki","happy"], say:["a","A week, not a year!"], prop:"gear" }
+  { id:"lean", art:true, title:"The Lean Startup", author:"Eric Ries", tag:"Ideas", panels:[
+    { cap:"One year later…", a:["niki","shocked"], say:["a","I built the perfect app. Nobody uses it."], prop:"down" },
+    { a:["niki","sad"], b:["mentor","normal"], say:["b","Did you show it to ten people first?"] },
+    { cap:"The lesson: MVP", b:["mentor","happy"], say:["b","Build the smallest version that tests your idea."], prop:"box" },
+    { cap:"Build → Measure → Learn. Repeat.", lesson:true, a:["niki","happy"], say:["a","This time, I test it in a week."], prop:"gear" }
   ]},
-  { id:"zero", title:"Zero to One", author:"Peter Thiel", tag:"Ideas", panels:[
+  { id:"zero", art:true, title:"Zero to One", author:"Peter Thiel", tag:"Ideas", panels:[
     { a:["niki","happy"], b:["mentor","flat"], say:["a","I'm launching another online shoe store!"] },
     { b:["mentor","normal"], say:["b","Competition eats profits. Why fight over crumbs?"], prop:"coins" },
     { a:["niki","shocked"], b:["mentor","normal"], say:["b","What important truth do you know that very few people agree with?"] },
@@ -400,14 +402,16 @@ list.innerHTML = BOOKS.map(b => `
       </div>
       <button class="done" type="button" data-id="${b.id}" aria-pressed="false">Mark as read</button>
     </div>
-    <div class="strip">
+    ${b.art ? `<div class="strip art">${b.panels.map((p, i) => `
+        <img class="art-panel" src="books/${b.id}-${i + 1}.jpg" width="490" height="640" loading="lazy" alt="${esc([p.cap, p.say && p.say[1]].filter(Boolean).join(" "))}">`).join("")}
+    </div>` : `<div class="strip">
       ${b.panels.map(p => `
         <div class="panel">
           ${p.cap ? `<div class="cap${p.lesson ? " lesson" : ""}">${esc(p.cap)}</div>` : ""}
           ${p.say ? `<div class="bubble ${bubbleSide(p)}">${esc(p.say[1])}</div>` : ""}
           <div class="scene">${scene(p)}</div>
         </div>`).join("")}
-    </div>
+    </div>`}
   </article>`).join("");
 
 function renderProgress() {
