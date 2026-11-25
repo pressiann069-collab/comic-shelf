@@ -201,6 +201,35 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .r-close:focus-visible, .r-nav:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
 @media (max-width: 900px) { .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 22px; } }
 @media (max-width: 520px) { .reader { width: 100%; max-height: 100dvh; box-shadow: none; } .r-head, .r-foot, .r-cta { padding-left: 16px; padding-right: 16px; } .reader .strip.art { padding: 0 16px; } .cover-title { font-size: 16px; } }
+/* FOCUS FEATURE */
+.feature { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 48px; align-items: center; max-width: 920px; }
+.feature-cover { width: 100%; }
+.eyebrow.left, .sec-title.left { text-align: left; }
+.sec-title.left { margin-bottom: 14px; }
+.feature-lede { font-size: 18px; margin: 0 0 18px; max-width: 34em; }
+.feature-facts { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); }
+.feature-facts b { color: var(--fg); font-family: var(--f-display); font-size: 20px; margin-right: 4px; }
+.feature-info .cta { background: var(--pop); color: #fff; }
+/* FOCUS READER */
+.focus-reader { width: min(820px, calc(100% - 24px)); background: #0d0c12; color: #f1eef6; border-color: #0d0c12; }
+.fr-bar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: rgba(13,12,18,.94); border-bottom: 1px solid #2a2733; }
+.fr-title { font-family: var(--f-display); font-weight: 600; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.fr-count { margin-left: auto; color: #9a95a6; font-size: 14px; font-variant-numeric: tabular-nums; }
+.focus-reader .r-close { background: transparent; color: #f1eef6; border-color: #2a2733; }
+.fr-pages { display: grid; gap: 14px; padding: 14px; }
+.fr-pages > img { width: 100%; height: auto; display: block; }
+.fr-end { position: relative; height: 460px; overflow: hidden; }
+.fr-end .gate-card { inset: auto 16px 24px; }
+/* EMAIL POPUP */
+.pop { width: min(480px, calc(100% - 24px)); max-height: calc(100dvh - 24px); overflow: auto; padding: 28px 24px 18px; border: 3px solid var(--ink); background: var(--paper); color: var(--ink); box-shadow: 10px 10px 0 var(--pop); }
+.pop::backdrop { background: rgba(13,12,18,.6); }
+.pop h2 { margin: 6px 0 8px; font-family: var(--f-display); font-weight: 900; font-size: 26px; line-height: 1.1; text-wrap: balance; }
+.pop-lede { margin: 0 0 16px; }
+.pop-close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; background: var(--paper); color: var(--ink); border-color: var(--ink); }
+.pop .row-form form { border: 0; box-shadow: none; padding: 0; background: none; }
+.pop-later { display: block; margin: 12px auto 0; background: none; border: 0; color: var(--muted); font: 500 14px var(--f-body); text-decoration: underline; cursor: pointer; }
+@media (max-width: 700px) { .feature { grid-template-columns: 1fr; gap: 28px; } .feature-cover { max-width: 260px; } }
+@media (max-width: 520px) { .focus-reader { width: 100%; max-height: 100dvh; } .fr-pages { padding: 8px; gap: 8px; } }
 footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
 
 @media (max-width: 900px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -237,8 +266,8 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
     <div>
       <span class="kicker">Free comic · Volume 1</span>
       <h1>The one skill behind <em>every success story.</em></h1>
-      <p class="lede">A 30-page comic about the skill nobody teaches. Read the first 10 pages free below. Get the full volume, plus a new business-book comic every Monday, straight to your inbox.</p>
-      <a class="cta ghost" href="#preview">Read the first 10 pages ↓</a>
+      <p class="lede">A 30-page comic about the skill nobody teaches. Read the first 10 pages free. Get the full volume, plus a new business-book comic every Monday, straight to your inbox.</p>
+      <button class="cta ghost" type="button" data-focus>Read the first 10 pages →</button>
       <div class="stats">
         <div><b>30</b>pages</div>
         <div><b>8</b>book comics</div>
@@ -285,32 +314,61 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
 
 <main>
   <section class="preview" id="preview">
-    <div class="wrap">
-      <p class="eyebrow">Volume 1 · Focus</p>
-      <h2 class="sec-title">Read the first 10 pages</h2>
-      <div class="pages">
-        <img src="focus/page-1.jpg" alt="Focus, Volume 1, page 1" width="1080" height="1623" loading="eager">
-        <img src="focus/page-2.jpg" alt="Focus, Volume 1, page 2" width="1080" height="1529" loading="lazy">
-        <img src="focus/page-3.jpg" alt="Focus, Volume 1, page 3" width="1080" height="1623" loading="lazy">
-        <img src="focus/page-4.jpg" alt="Focus, Volume 1, page 4" width="1080" height="1623" loading="lazy">
-        <img src="focus/page-5.jpg" alt="Focus, Volume 1, page 5" width="1080" height="1623" loading="lazy">
-        <img src="focus/page-6.jpg" alt="Focus, Volume 1, page 6" width="1254" height="1254" loading="lazy">
-        <img src="focus/page-7.jpg" alt="Focus, Volume 1, page 7" width="1080" height="1623" loading="lazy">
-        <img src="focus/page-8.jpg" alt="Focus, Volume 1, page 8" width="1080" height="1623" loading="lazy">
-        <img src="focus/page-9.jpg" alt="Focus, Volume 1, page 9" width="1086" height="1448" loading="lazy">
-        <img src="focus/page-10.jpg" alt="Focus, Volume 1, page 10" width="1080" height="1456" loading="lazy">
-        <img src="focus/page-10b.jpg" alt="Focus, Volume 1, page 10b" width="1086" height="1448" loading="lazy">
+    <div class="wrap feature">
+      <button class="cover feature-cover" type="button" data-focus aria-label="Read Focus, Volume 1">
+        <img src="covers/focus.jpg" width="800" height="1200" alt="Focus, Volume 1 comic cover">
+      </button>
+      <div class="feature-info">
+        <p class="eyebrow left">Original comic · Volume 1</p>
+        <h2 class="sec-title left">Focus</h2>
+        <p class="feature-lede">He does everything right. Up at 6, trains, studies, builds the funnel. And still hits a wall. A 30-page comic about the one skill behind every success story.</p>
+        <ul class="feature-facts">
+          <li><b>30</b> pages</li>
+          <li><b>10</b> free to read now</li>
+          <li><b>~6</b> minutes</li>
+        </ul>
+        <button class="cta" type="button" data-focus>Start reading free →</button>
       </div>
-      <div class="gate">
+    </div>
+  </section>
+
+  <dialog class="reader focus-reader" id="focusReader" aria-label="Focus, Volume 1">
+    <div class="fr-bar">
+      <span class="fr-title">Focus · Vol. 1</span>
+      <span class="fr-count" id="frCount">Page 1 of 30</span>
+      <button class="r-close" type="button" id="frClose" aria-label="Close">✕</button>
+    </div>
+    <div class="fr-pages">
+      <img src="focus/page-1.jpg" alt="Focus, Volume 1, page 1" width="1080" height="1623" loading="lazy" data-page="1">
+      <img src="focus/page-2.jpg" alt="Focus, Volume 1, page 2" width="1080" height="1529" loading="lazy" data-page="2">
+      <img src="focus/page-3.jpg" alt="Focus, Volume 1, page 3" width="1080" height="1623" loading="lazy" data-page="3">
+      <img src="focus/page-4.jpg" alt="Focus, Volume 1, page 4" width="1080" height="1623" loading="lazy" data-page="4">
+      <img src="focus/page-5.jpg" alt="Focus, Volume 1, page 5" width="1080" height="1623" loading="lazy" data-page="5">
+      <img src="focus/page-6.jpg" alt="Focus, Volume 1, page 6" width="1254" height="1254" loading="lazy" data-page="6">
+      <img src="focus/page-7.jpg" alt="Focus, Volume 1, page 7" width="1080" height="1623" loading="lazy" data-page="7">
+      <img src="focus/page-8.jpg" alt="Focus, Volume 1, page 8" width="1080" height="1623" loading="lazy" data-page="8">
+      <img src="focus/page-9.jpg" alt="Focus, Volume 1, page 9" width="1086" height="1448" loading="lazy" data-page="9">
+      <img src="focus/page-10.jpg" alt="Focus, Volume 1, page 10" width="1080" height="1456" loading="lazy" data-page="10">
+      <img src="focus/page-10b.jpg" alt="Focus, Volume 1, page 10b" width="1086" height="1448" loading="lazy" data-page="10b">
+      <div class="fr-end" id="frEnd">
         <img class="gate-peek" src="focus/page-17.jpg" alt="" width="1202" height="1309" loading="lazy">
         <div class="gate-card">
           <p class="gate-kicker">Pages 11–30 are waiting</p>
           <h3>He finally got his first win. Then someone started pulling the strings.</h3>
-          <a class="cta" href="#signup" id="unlock">Unlock the rest free ↑</a>
+          <button class="cta" type="button" id="frUnlock">Keep reading free →</button>
         </div>
       </div>
     </div>
-  </section>
+  </dialog>
+
+  <dialog class="pop" id="gatePop" aria-labelledby="popTitle">
+    <button class="r-close pop-close" type="button" id="popClose" aria-label="Close">✕</button>
+    <p class="gate-kicker">You just finished page 10</p>
+    <h2 id="popTitle">Want to see what happens next?</h2>
+    <p class="pop-lede">Get pages 11–30 free, plus one business book as a 4-panel comic every Monday.</p>
+    <div id="popForm"></div>
+    <button class="pop-later" type="button" id="popLater">Maybe later</button>
+  </dialog>
 
   <div class="wrap bonus-head" id="shelf">
     <p class="eyebrow">Bonus</p>
@@ -572,6 +630,7 @@ function setTopic(t) {
 }
 function route(scroll) {
   const h = location.hash.replace("#", "");
+  if (h === "read-focus") { openFocus(); return; }
   if (h.startsWith("book-") && BOOKS.some(b => "book-" + b.id === h)) { setTopic("All"); openBook(h.slice(5)); return; }
   closeBook();
   const link = topnav.querySelector(`a[href="#${h}"]`);
@@ -588,7 +647,46 @@ chips.addEventListener("click", e => {
   setTopic(t);
 });
 
-document.getElementById("unlock").addEventListener("click", function (e) {
+
+/* ---------- Focus reader + popup ---------- */
+const focusReader = document.getElementById("focusReader");
+const gatePop = document.getElementById("gatePop");
+const formBox = document.getElementById("mlb2-48889442");
+const formHome = formBox.parentNode, formNext = formBox.nextSibling;
+let popShown = false;
+function openFocus() {
+  const focusReader = document.getElementById("focusReader");
+  if (!focusReader.open) focusReader.showModal();
+  if (location.hash !== "#read-focus") history.replaceState(null, "", "#read-focus");
+}
+function openPop() {
+  if (gatePop.open) return;
+  document.getElementById("popForm").appendChild(formBox);
+  gatePop.showModal(); popShown = true;
+  setTimeout(() => { const em = document.getElementById("email"); if (em) em.focus(); }, 50);
+}
+gatePop.addEventListener("close", () => { formHome.insertBefore(formBox, formNext); });
+document.getElementById("popClose").addEventListener("click", () => gatePop.close());
+document.getElementById("popLater").addEventListener("click", () => gatePop.close());
+gatePop.addEventListener("click", e => { if (e.target === gatePop) gatePop.close(); });
+document.getElementById("frUnlock").addEventListener("click", openPop);
+document.getElementById("frClose").addEventListener("click", () => focusReader.close());
+focusReader.addEventListener("click", e => { if (e.target === focusReader) focusReader.close(); });
+focusReader.addEventListener("close", () => { if (location.hash === "#read-focus") history.replaceState(null, "", location.pathname + location.search); });
+document.addEventListener("click", e => { if (e.target.closest("[data-focus]")) openFocus(); });
+const frCount = document.getElementById("frCount");
+const frImgs = [...focusReader.querySelectorAll(".fr-pages > img")];
+focusReader.addEventListener("scroll", () => {
+  let cur = "1";
+  for (const img of frImgs) { if (img.getBoundingClientRect().top < window.innerHeight * 0.5) cur = img.dataset.page; }
+  frCount.textContent = "Page " + cur + " of 30";
+}, { passive: true });
+if ("IntersectionObserver" in window) {
+  new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting && !popShown && focusReader.open) openPop(); });
+  }, { root: focusReader, threshold: 0.35 }).observe(document.getElementById("frEnd"));
+}
+document.getElementById("unlock")?.addEventListener("click", function (e) {
   e.preventDefault();
   var card = document.getElementById("signup");
   card.scrollIntoView({ behavior: "smooth", block: "center" });
