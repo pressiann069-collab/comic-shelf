@@ -166,6 +166,50 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #books, #preview, #signup, #top, #shelf { scroll-margin-top: 64px; }
 .topic-note { text-align: center; color: var(--muted); margin: 10px 0 0; font-size: 15px; }
 @media (max-width: 560px) { .logo { display: none; } .nav-cta { padding: 7px 10px; } }
+/* SHELF */
+.shelf { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 40px 28px; padding-block: 28px 80px; }
+.book.hidden { display: none; }
+.book { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.cover { all: unset; cursor: pointer; display: block; position: relative; aspect-ratio: 2 / 3; max-width: 100%; border-radius: 3px 8px 8px 3px; overflow: hidden;
+  background-color: var(--cbg); color: var(--cfg);
+  background-image: radial-gradient(rgba(0,0,0,.13) 1.2px, transparent 1.4px), linear-gradient(90deg, rgba(0,0,0,.28) 0, rgba(0,0,0,.05) 5%, rgba(255,255,255,.18) 6.5%, transparent 9%);
+  background-size: 9px 9px, 100% 100%;
+  box-shadow: 2px 2px 0 #e9e4da, 4px 4px 0 #d8d2c6, 6px 6px 0 var(--ink), 10px 14px 22px rgba(0,0,0,.25);
+  transition: transform .18s ease, box-shadow .18s ease; }
+.cover:hover { transform: translateY(-6px) rotate(-1deg); }
+.cover:focus-visible { outline: 3px solid var(--sky); outline-offset: 5px; }
+.cover-in { position: absolute; inset: 0; display: grid; grid-template-rows: auto auto 1fr auto; padding: 14% 10% 10% 16%; gap: 6px; }
+.cover-label { font-family: var(--f-display); font-weight: 600; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; opacity: .8; }
+.cover-title { font-family: var(--f-display); font-weight: 900; font-size: clamp(17px, 2vw, 24px); line-height: 1.02; text-wrap: balance; }
+.cover-art { align-self: center; justify-self: center; width: 92%; max-width: 100%; }
+.cover-art svg { width: 100%; height: auto; display: block; }
+.cover-author { font-family: var(--f-body); font-weight: 500; font-size: 12px; opacity: .9; }
+.cover-read { position: absolute; top: 10px; right: 10px; background: var(--pop); color: #fff; font: 700 11px var(--f-body); padding: 3px 8px; border-radius: 999px; }
+.book-info { display: grid; gap: 8px; }
+.book-info h3 { margin: 0; font-family: var(--f-display); font-weight: 900; font-size: 17px; line-height: 1.15; }
+.book-info p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+.tips { justify-self: start; font-family: var(--f-display); font-weight: 600; font-size: 13px; color: var(--ink); background: var(--accent); border: 2px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); padding: 9px 14px; cursor: pointer; transition: transform .12s, box-shadow .12s; }
+.tips:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+.tips:focus-visible { outline: 3px solid var(--sky); outline-offset: 3px; }
+/* READER DIALOG */
+.reader { width: min(1100px, calc(100% - 24px)); max-height: calc(100dvh - 24px); padding: 0; border: 3px solid var(--ink); background: var(--bg); color: var(--fg); box-shadow: 10px 10px 0 var(--ink); overflow: auto; }
+.reader::backdrop { background: rgba(13,12,18,.72); }
+.r-head { display: flex; justify-content: space-between; gap: 16px; align-items: start; padding: 22px 24px 14px; }
+.r-headtext { min-width: 0; }
+.r-kicker { margin: 0 0 4px; font-family: var(--f-display); font-weight: 600; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--pop); }
+.reader h2 { margin: 0; font-family: var(--f-display); font-weight: 900; font-size: clamp(22px, 3vw, 32px); line-height: 1.1; }
+.r-author { margin: 4px 0 0; color: var(--muted); }
+.r-close { flex: none; width: 42px; height: 42px; border: 2px solid var(--line); background: var(--bg); color: var(--fg); font-size: 18px; cursor: pointer; border-radius: 50%; }
+.reader .strip.art { padding: 0 24px; }
+.r-foot { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; padding: 18px 24px; }
+.r-lesson { margin: 0; max-width: 46em; }
+.r-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.r-nav { font: 500 14px var(--f-body); border: 2px solid var(--line); background: var(--bg); color: var(--fg); padding: 8px 14px; border-radius: 8px; cursor: pointer; }
+.r-cta { margin: 0; padding: 14px 24px 20px; border-top: 2px dashed var(--chip); color: var(--muted); }
+.r-cta a { color: var(--pop); font-weight: 700; }
+.r-close:focus-visible, .r-nav:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; }
+@media (max-width: 900px) { .shelf { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 22px; } }
+@media (max-width: 520px) { .reader { width: 100%; max-height: 100dvh; box-shadow: none; } .r-head, .r-foot, .r-cta { padding-left: 16px; padding-right: 16px; } .reader .strip.art { padding: 0 16px; } .cover-title { font-size: 16px; } }
 footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
 
 @media (max-width: 900px) { .strip { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -202,8 +246,8 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
     <div>
       <span class="kicker">Free comic · Volume 1</span>
       <h1>The one skill behind <em>every success story.</em></h1>
-      <p class="lede">A 30-page comic about the skill nobody teaches. Read the first 5 pages free below. Get the full volume, plus a new business-book comic every Monday, straight to your inbox.</p>
-      <a class="cta ghost" href="#preview">Read the first 5 pages ↓</a>
+      <p class="lede">A 30-page comic about the skill nobody teaches. Read the first 10 pages free below. Get the full volume, plus a new business-book comic every Monday, straight to your inbox.</p>
+      <a class="cta ghost" href="#preview">Read the first 10 pages ↓</a>
       <div class="stats">
         <div><b>30</b>pages</div>
         <div><b>8</b>book comics</div>
@@ -240,7 +284,7 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
           <div class="success">
             <h3>You're in!</h3>
             <p>Volume 1 is on its way to your inbox. Can't wait?</p>
-            <a class="cta" href="volume-1/#page-6">Keep reading from page 6 →</a>
+            <a class="cta" href="volume-1/#page-11">Keep reading from page 11 →</a>
           </div>
         </div>
       </div>
@@ -252,19 +296,25 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
   <section class="preview" id="preview">
     <div class="wrap">
       <p class="eyebrow">Volume 1 · Focus</p>
-      <h2 class="sec-title">Read the first 5 pages</h2>
+      <h2 class="sec-title">Read the first 10 pages</h2>
       <div class="pages">
         <img src="focus/page-1.jpg" alt="Focus, Volume 1, page 1" width="1080" height="1623" loading="eager">
         <img src="focus/page-2.jpg" alt="Focus, Volume 1, page 2" width="1080" height="1529" loading="lazy">
         <img src="focus/page-3.jpg" alt="Focus, Volume 1, page 3" width="1080" height="1623" loading="lazy">
         <img src="focus/page-4.jpg" alt="Focus, Volume 1, page 4" width="1080" height="1623" loading="lazy">
         <img src="focus/page-5.jpg" alt="Focus, Volume 1, page 5" width="1080" height="1623" loading="lazy">
+        <img src="focus/page-6.jpg" alt="Focus, Volume 1, page 6" width="1254" height="1254" loading="lazy">
+        <img src="focus/page-7.jpg" alt="Focus, Volume 1, page 7" width="1080" height="1623" loading="lazy">
+        <img src="focus/page-8.jpg" alt="Focus, Volume 1, page 8" width="1080" height="1623" loading="lazy">
+        <img src="focus/page-9.jpg" alt="Focus, Volume 1, page 9" width="1086" height="1448" loading="lazy">
+        <img src="focus/page-10.jpg" alt="Focus, Volume 1, page 10" width="1080" height="1456" loading="lazy">
+        <img src="focus/page-10b.jpg" alt="Focus, Volume 1, page 10b" width="1086" height="1448" loading="lazy">
       </div>
       <div class="gate">
-        <img class="gate-peek" src="focus/page-6.jpg" alt="" width="1254" height="1254" loading="lazy">
+        <img class="gate-peek" src="focus/page-17.jpg" alt="" width="1202" height="1309" loading="lazy">
         <div class="gate-card">
-          <p class="gate-kicker">Pages 6–30 are waiting</p>
-          <h3>He just hit the wall. What he does next changes everything.</h3>
+          <p class="gate-kicker">Pages 11–30 are waiting</p>
+          <h3>He finally got his first win. Then someone started pulling the strings.</h3>
           <a class="cta" href="#signup" id="unlock">Unlock the rest free ↑</a>
         </div>
       </div>
@@ -274,13 +324,35 @@ footer { padding-block: 28px; color: var(--muted); font-size: 14px; }
   <div class="wrap bonus-head" id="shelf">
     <p class="eyebrow">Bonus</p>
     <h2 class="sec-title" id="booksTitle">8 business books, 4 panels each</h2>
+    <p class="topic-note">Pick a book and get its biggest lessons as a 4-panel comic.</p>
     <p class="topic-note" id="topicNote" hidden></p>
   </div>
   <div class="wrap toolbar" id="books">
     <div class="chips" role="group" aria-label="Filter by topic" id="chips"></div>
     <div class="progress"><span id="progText">0 of 8 read</span><span class="bar"><i id="progBar"></i></span></div>
   </div>
-  <div class="wrap books" id="list"></div>
+  <div class="wrap shelf" id="list"></div>
+
+  <dialog class="reader" id="reader" aria-labelledby="rTitle">
+    <div class="r-head">
+      <div class="r-headtext">
+        <p class="r-kicker" id="rKicker"></p>
+        <h2 id="rTitle"></h2>
+        <p class="r-author" id="rAuthor"></p>
+      </div>
+      <button class="r-close" type="button" id="rClose" aria-label="Close">✕</button>
+    </div>
+    <div class="strip art" id="rStrip"></div>
+    <div class="r-foot">
+      <p class="r-lesson"><b>Key lesson:</b> <span id="rLesson"></span></p>
+      <div class="r-actions">
+        <button class="done" type="button" id="rDone" data-id="">Mark as read</button>
+        <button class="r-nav" type="button" id="rPrev">← Previous</button>
+        <button class="r-nav" type="button" id="rNext">Next book →</button>
+      </div>
+    </div>
+    <p class="r-cta">Want the 30-page Focus comic too? <a href="#signup" id="rSignup">Get Volume 1 free →</a></p>
+  </dialog>
 
 </main>
 
@@ -423,28 +495,73 @@ let read = {};
 try { read = JSON.parse(localStorage.getItem("comic-read") || "{}") || {}; } catch (e) { read = {}; }
 function saveRead() { try { localStorage.setItem("comic-read", JSON.stringify(read)); } catch (e) {} }
 
+const COVERS = {
+  lean: ["#2ec4f1", "#16141a", "gear"], zero: ["#16141a", "#ffd23f", "target"], mom: ["#ffe0e6", "#16141a", "bulb"],
+  offers: ["#ffd23f", "#16141a", "coins"], emyth: ["#ef3e5c", "#fffdf8", "clock"], atomic: ["#fffdf8", "#16141a", "calendar"],
+  rework: ["#d9f4fd", "#16141a", "rocket"], startup100: ["#2b2350", "#fffdf8", "chart"]
+};
 const list = document.getElementById("list");
-list.innerHTML = BOOKS.map(b => `
+list.innerHTML = BOOKS.map(b => {
+  const c = COVERS[b.id];
+  return `
   <article class="book" data-tag="${b.tag}" id="book-${b.id}">
-    <div class="book-head">
-      <div>
-        <h2>${esc(b.title)}</h2>
-        <div class="meta">${esc(b.author)} <span class="tag">${b.tag}</span></div>
-        <div class="meta"><b style="color:var(--fg)">Key lesson:</b> ${esc(MAIN_LESSON[b.id])}</div>
-      </div>
-      <button class="done" type="button" data-id="${b.id}" aria-pressed="false">Mark as read</button>
+    <button class="cover" type="button" data-open="${b.id}" style="--cbg:${c[0]};--cfg:${c[1]}" aria-label="Get the tips from ${esc(b.title)}">
+      <span class="cover-in">
+        <span class="cover-label">4-panel comic</span>
+        <span class="cover-title">${esc(b.title)}</span>
+        <span class="cover-art"><svg viewBox="40 70 240 150" aria-hidden="true">${prop(c[2], 160)}</svg></span>
+        <span class="cover-author">${esc(b.author)}</span>
+      </span>
+      <span class="cover-read" data-read="${b.id}" hidden>✓ Read</span>
+    </button>
+    <div class="book-info">
+      <h3>${esc(b.title)}</h3>
+      <p>${esc(MAIN_LESSON[b.id])}</p>
+      <button class="tips" type="button" data-open="${b.id}">Get the tips →</button>
     </div>
-    ${b.art ? `<div class="strip art">${b.panels.map((p, i) => `
-        <img class="art-panel" src="books/${b.id}-${i + 1}.jpg" width="490" height="640" loading="lazy" alt="${esc([p.cap, p.say && p.say[1]].filter(Boolean).join(" "))}">`).join("")}
-    </div>` : `<div class="strip">
-      ${b.panels.map(p => `
-        <div class="panel">
-          ${p.cap ? `<div class="cap${p.lesson ? " lesson" : ""}">${esc(p.cap)}</div>` : ""}
-          ${p.say ? `<div class="bubble ${bubbleSide(p)}">${esc(p.say[1])}</div>` : ""}
-          <div class="scene">${scene(p)}</div>
-        </div>`).join("")}
-    </div>`}
-  </article>`).join("");
+  </article>`;
+}).join("");
+
+const reader = document.getElementById("reader");
+let current = null;
+function visibleBooks() { return BOOKS.filter(b => !document.getElementById("book-" + b.id).classList.contains("hidden")); }
+function fillReader(id) {
+  const b = BOOKS.find(x => x.id === id); if (!b) return;
+  current = id;
+  document.getElementById("rKicker").textContent = b.tag + " · 4 panels";
+  document.getElementById("rTitle").textContent = b.title;
+  document.getElementById("rAuthor").textContent = "by " + b.author;
+  document.getElementById("rLesson").textContent = MAIN_LESSON[b.id];
+  document.getElementById("rDone").dataset.id = b.id;
+  document.getElementById("rStrip").innerHTML = b.panels.map((p, i) =>
+    `<img class="art-panel" src="books/${b.id}-${i + 1}.jpg" width="490" height="640" alt="${esc([p.cap, p.say && p.say[1]].filter(Boolean).join(" "))}">`).join("");
+  renderProgress();
+  reader.scrollTop = 0;
+}
+function openBook(id) {
+  fillReader(id);
+  if (!reader.open) reader.showModal();
+  if (location.hash !== "#book-" + id) history.replaceState(null, "", "#book-" + id);
+}
+function closeBook() { if (reader.open) reader.close(); }
+reader.addEventListener("close", () => {
+  if (location.hash.startsWith("#book-")) history.replaceState(null, "", location.pathname + location.search);
+  const btn = current && document.querySelector(`#book-${current} .tips`); if (btn) btn.focus({ preventScroll: true });
+});
+reader.addEventListener("click", e => { if (e.target === reader) closeBook(); });
+document.getElementById("rClose").addEventListener("click", closeBook);
+document.getElementById("rSignup").addEventListener("click", () => closeBook());
+function step(d) {
+  const vis = visibleBooks(); const i = vis.findIndex(b => b.id === current);
+  const next = vis[(i + d + vis.length) % vis.length]; if (next) openBook(next.id);
+}
+document.getElementById("rPrev").addEventListener("click", () => step(-1));
+document.getElementById("rNext").addEventListener("click", () => step(1));
+list.addEventListener("click", e => { const t = e.target.closest("[data-open]"); if (t) openBook(t.dataset.open); });
+reader.addEventListener("click", e => {
+  const btn = e.target.closest(".done"); if (!btn) return;
+  read[btn.dataset.id] = !read[btn.dataset.id]; saveRead(); renderProgress();
+});
 
 function renderProgress() {
   const n = BOOKS.filter(b => read[b.id]).length;
@@ -455,11 +572,8 @@ function renderProgress() {
     btn.setAttribute("aria-pressed", on);
     btn.textContent = on ? "✓ Read" : "Mark as read";
   });
+  document.querySelectorAll(".cover-read").forEach(el => { el.hidden = !read[el.dataset.read]; });
 }
-list.addEventListener("click", e => {
-  const btn = e.target.closest(".done"); if (!btn) return;
-  read[btn.dataset.id] = !read[btn.dataset.id]; saveRead(); renderProgress();
-});
 renderProgress();
 
 const tags = ["All", ...new Set(BOOKS.map(b => b.tag))];
@@ -478,6 +592,8 @@ function setTopic(t) {
 }
 function route(scroll) {
   const h = location.hash.replace("#", "");
+  if (h.startsWith("book-") && BOOKS.some(b => "book-" + b.id === h)) { setTopic("All"); openBook(h.slice(5)); return; }
+  closeBook();
   const link = topnav.querySelector(`a[href="#${h}"]`);
   if (!link) { setTopic("All"); topnav.querySelectorAll("a").forEach(a => a.setAttribute("aria-current", "false")); return; }
   setTopic(link.dataset.topic);
